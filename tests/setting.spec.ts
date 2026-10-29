@@ -25,9 +25,48 @@ test("Verify user successfully clicks on the Setting Tab", async ({ page }) => {
   await setting.verifySchoolSettingPage();
 
   // Fill School Code
-  await setting.clickOnSchoolCode();
-  await page.waitForTimeout(3000);
+  await setting.clickOnSchoolCode(); 
 
   // Verify entered value
   await expect(setting.fillSchoolCode).toHaveValue("ASD23CRF");
+
+  //Fill School Name
+  await setting.clickonSchoolName(); 
+
+  //Verify entered school name
+  await expect(setting.schoolnamefield).toHaveValue("Green Valley Public School");
+
+  //Fill Phone Number
+  await setting.ClickOnPhoneFiled();  
+
+  //Verify entered phone number
+  await expect(setting.PhoneNumberField).toHaveValue('+917645864300');
+
+  //Fill Fax Filed
+  await setting.ClickOnFaxFiled();  
+
+  //Verify Entered Fax Filed 
+  await expect(setting.FillFaxFiled).toHaveValue('+1-202-555-0123');
+
+  //Fill API Key Filed
+  await setting.ClickOnApiKey();
+  await page.waitForTimeout(3000);
+
+  //Verify Entered Fax Filed 
+  await expect(setting.FillApiKeyField).toHaveValue('dummy_api_key_123456789');
+
+  //Fill Sect Addmission type 
+  await setting.SelectAddmissionType();
+  await page.waitForTimeout(3000);
+
+  // Verify selected dropdown value
+  await expect(
+  setting.ChooseAddmission.locator("option:checked")
+  ).toHaveText("No");
+  
+
+  //Fill Sect Addmission type 
+  await setting.ClickOnSubmitButton();
+  await page.waitForTimeout(3000);  
+
 });

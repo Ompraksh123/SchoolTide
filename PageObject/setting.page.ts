@@ -6,6 +6,12 @@ export default class SettingPage {
   readonly settingDropdown: Locator;
   readonly schoolSettingTab: Locator;
   readonly fillSchoolCode: Locator;
+  readonly schoolnamefield: Locator;
+  readonly PhoneNumberField: Locator;
+  readonly FillFaxFiled: Locator;
+  readonly FillApiKeyField: Locator;
+  readonly ChooseAddmission: Locator;
+  readonly Submit: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -21,6 +27,18 @@ export default class SettingPage {
     this.fillSchoolCode = page.locator(
       "input[name='school_code']"
     );
+
+    this.schoolnamefield = page.locator("//input[@name='school_name']");
+
+    this.PhoneNumberField = page.locator("//input[@name='phone']");
+
+    this.FillFaxFiled = page.locator("//input[@name='school_fax']");
+
+    this.FillApiKeyField = page.locator("//input[@name='map_api_key']");
+
+    this.ChooseAddmission = page.locator("//select[@name='enable_online_admission']");
+
+    this.Submit = page.locator("(//button[@type='submit'])[2]");
   }
 
   async clickSettingDropdown() {
@@ -52,5 +70,53 @@ export default class SettingPage {
     });
 
     await this.fillSchoolCode.fill("ASD23CRF");
+  }
+
+  async clickonSchoolName(){
+    await expect(this.schoolnamefield).toBeVisible({
+        timeout: 60000,
+    })
+
+    await this.schoolnamefield.fill('Green Valley Public School');
+  }
+
+  async ClickOnPhoneFiled(){
+    await expect(this.PhoneNumberField).toBeVisible({
+        timeout:60000,
+    })
+
+    await this.PhoneNumberField.fill('+917645864300');
+  }
+
+  async ClickOnFaxFiled(){
+    await expect(this.FillFaxFiled).toBeVisible({
+        timeout:60000,
+    })
+
+    await this.FillFaxFiled.fill('+1-202-555-0123');
+  }
+
+  async ClickOnApiKey(){
+    await expect(this.FillApiKeyField).toBeVisible({
+        timeout:60000,
+    })
+
+    await this.FillApiKeyField.fill('dummy_api_key_123456789');
+  }
+
+  async SelectAddmissionType(){
+    await expect(this.ChooseAddmission).toBeVisible({
+        timeout:60000,
+    })
+
+    await this.ChooseAddmission.selectOption('No');
+  }
+
+  async ClickOnSubmitButton(){
+    await expect(this.Submit).toBeVisible({
+        timeout:60000
+    })
+
+    await this.Submit.click();
   }
 }
