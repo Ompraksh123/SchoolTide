@@ -1,4 +1,3 @@
-
 import { Page, Locator, expect } from "@playwright/test";
 
 export default class SettingPage {
@@ -13,6 +12,13 @@ export default class SettingPage {
   readonly ChooseAddmission: Locator;
   readonly Submit: Locator;
 
+  //Payment Setting
+  readonly paymentsetting: Locator;
+  readonly FillPayPalEmail: Locator;
+  readonly SelectDemo: Locator;
+  readonly ExtraCharge: Locator;
+  readonly Update: Locator;
+
   constructor(page: Page) {
     this.page = page;
 
@@ -21,12 +27,10 @@ export default class SettingPage {
     });
 
     this.schoolSettingTab = page.locator(
-      "a[href='http://schooltide.udeshatechnology.com/setting/index.html']"
+      "a[href='http://schooltide.udeshatechnology.com/setting/index.html']",
     );
 
-    this.fillSchoolCode = page.locator(
-      "input[name='school_code']"
-    );
+    this.fillSchoolCode = page.locator("input[name='school_code']");
 
     this.schoolnamefield = page.locator("//input[@name='school_name']");
 
@@ -36,9 +40,23 @@ export default class SettingPage {
 
     this.FillApiKeyField = page.locator("//input[@name='map_api_key']");
 
-    this.ChooseAddmission = page.locator("//select[@name='enable_online_admission']");
+    this.ChooseAddmission = page.locator(
+      "//select[@name='enable_online_admission']",
+    );
 
     this.Submit = page.locator("(//button[@type='submit'])[2]");
+
+    this.paymentsetting = page.locator(
+      "(//a[normalize-space()='Payment Setting'])[1]",
+    );
+
+    this.FillPayPalEmail = page.locator("//input[@name='paypal_email']");
+
+    this.SelectDemo = page.locator("//select[@name='paypal_demo']");
+
+    this.ExtraCharge = page.locator("//input[@name='paypal_extra_charge']");
+
+    this.Update = page.locator("(//button[@id='send'])[1]");
   }
 
   async clickSettingDropdown() {
@@ -58,10 +76,9 @@ export default class SettingPage {
   }
 
   async verifySchoolSettingPage() {
-    await expect(this.page).toHaveURL(
-      /\/setting\/index\.html$/,
-      { timeout: 60000 }
-    );
+    await expect(this.page).toHaveURL(/\/setting\/index\.html$/, {
+      timeout: 60000,
+    });
   }
 
   async clickOnSchoolCode() {
@@ -72,51 +89,84 @@ export default class SettingPage {
     await this.fillSchoolCode.fill("ASD23CRF");
   }
 
-  async clickonSchoolName(){
+  async clickonSchoolName() {
     await expect(this.schoolnamefield).toBeVisible({
-        timeout: 60000,
-    })
+      timeout: 60000,
+    });
 
-    await this.schoolnamefield.fill('Green Valley Public School');
+    await this.schoolnamefield.fill("Green Valley Public School");
   }
 
-  async ClickOnPhoneFiled(){
+  async ClickOnPhoneFiled() {
     await expect(this.PhoneNumberField).toBeVisible({
-        timeout:60000,
-    })
+      timeout: 60000,
+    });
 
-    await this.PhoneNumberField.fill('+917645864300');
+    await this.PhoneNumberField.fill("+917645864300");
   }
 
-  async ClickOnFaxFiled(){
+  async ClickOnFaxFiled() {
     await expect(this.FillFaxFiled).toBeVisible({
-        timeout:60000,
-    })
+      timeout: 60000,
+    });
 
-    await this.FillFaxFiled.fill('+1-202-555-0123');
+    await this.FillFaxFiled.fill("+1-202-555-0123");
   }
 
-  async ClickOnApiKey(){
+  async ClickOnApiKey() {
     await expect(this.FillApiKeyField).toBeVisible({
-        timeout:60000,
-    })
+      timeout: 60000,
+    });
 
-    await this.FillApiKeyField.fill('dummy_api_key_123456789');
+    await this.FillApiKeyField.fill("dummy_api_key_123456789");
   }
 
-  async SelectAddmissionType(){
+  async SelectAddmissionType() {
     await expect(this.ChooseAddmission).toBeVisible({
-        timeout:60000,
-    })
+      timeout: 60000,
+    });
 
-    await this.ChooseAddmission.selectOption('No');
+    await this.ChooseAddmission.selectOption("No");
   }
 
-  async ClickOnSubmitButton(){
+  async ClickOnSubmitButton() {
     await expect(this.Submit).toBeVisible({
-        timeout:60000
-    })
+      timeout: 60000,
+    });
 
     await this.Submit.click();
+  }
+
+  //Payment Setting
+  async ClickOnPaymentTab() {
+    await expect(this.paymentsetting).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.paymentsetting.click();
+  }
+
+  async ClickOnPayEmailField() {
+    await expect(this.FillPayPalEmail).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.FillPayPalEmail.fill("paypal.test123@example.org");
+  }
+
+  async SelectDemoOption(label: string) {
+    await this.SelectDemo.selectOption({ label });
+  }
+
+  async FillPayPalExtraCharge(value: string) {
+    await this.ExtraCharge.fill(value);
+  }
+
+  async ClickOnSubmitButtonPayment() {
+    await expect(this.Submit).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.Update.click();
   }
 }
