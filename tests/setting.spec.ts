@@ -124,4 +124,32 @@ test.describe("Setting", { tag: "@Batch2" }, () => {
     );
     await setting.ClickOnSubmitButtonPayTm();
   });
+
+  test("Verify user successfully clicks on Pay Stck Tab in  Setting", async ({
+    page,
+  }) => {
+    const setting = new SettingPage(page);
+
+    await setting.clickSettingDropdown();
+    await setting.ClickOnPaymentTab();
+    await setting.ClickOnPayStack();
+    await page.waitForTimeout(3000);
+    await setting.FillSecretKey();
+    await expect(setting.SecretKey).toHaveValue("sk_test_1234567890abcdef");
+    await setting.FillPublicKey();
+    await expect(setting.PublicKey).toHaveValue("pk_test_1234567890abcdef");   
+    await setting.SelectISDemo("No");
+    await expect(setting.SelectDeoOption.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await setting.EnterExtraChargeAmmount();
+    await expect(setting.EnterExtraCharge).toHaveValue("65.00");
+    await page.waitForTimeout(3000);
+    await setting.SelectISActiveDetail("No");
+    await expect(setting.ChooseIsActive.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await setting.ClickOnSubmitButtonPayStack(); 
+
+  });
 });

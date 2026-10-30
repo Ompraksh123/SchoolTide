@@ -39,6 +39,15 @@ export default class SettingPage {
   readonly isActiveOption: Locator;
   readonly UpdateButtonTm: Locator;
 
+  // Setting ---> Payment Setting -->Pay Stack
+  readonly PayStack: Locator;
+  readonly SecretKey: Locator;
+  readonly PublicKey: Locator;
+  readonly SelectDeoOption: Locator;
+  readonly EnterExtraCharge: Locator;
+  readonly ChooseIsActive: Locator;
+  readonly PressSubmitButton: Locator;
+
   constructor(page: Page) {
     this.page = page;
 
@@ -109,6 +118,20 @@ export default class SettingPage {
     this.isActiveOption = page.locator("//select[@name='paytm_status']");
 
     this.UpdateButtonTm = page.locator("(//button[@id='send'])[5]");
+
+    this.PayStack = page.locator("//a[@href='#tab_paystack_setting']");
+
+    this.SecretKey = page.locator("//input[@name='stack_secret_key']");
+
+    this.PublicKey = page.locator("//input[@name='stack_public_key']");
+
+    this.SelectDeoOption = page.locator("//select[@name='stack_demo']");
+
+    this.EnterExtraCharge = page.locator("//input[@name='stack_extra_charge']");
+
+    this.ChooseIsActive = page.locator("//select[@name='stack_status']");
+
+    this.PressSubmitButton = page.locator("(//button[@id='send'])[6]");
   }
 
   async clickSettingDropdown() {
@@ -319,5 +342,55 @@ export default class SettingPage {
     });
 
     await this.UpdateButtonTm.click();
+  }
+
+  // Setting ---> Payment Setting --> PayTm
+
+  async ClickOnPayStack(){
+    await expect(this.PayStack).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.PayStack.click();
+  }
+
+  async FillSecretKey(){
+    await expect(this.SecretKey).toBeVisible({
+        timeout:60000,
+    })
+
+     await this.SecretKey.fill("sk_test_1234567890abcdef");
+  }
+
+  async FillPublicKey(){
+    await expect(this.PublicKey).toBeVisible({
+        timeout:60000,
+    })
+
+    await this.PublicKey.fill("pk_test_1234567890abcdef");
+  }
+
+  async SelectISDemo(label: string) {
+    await this.SelectDeoOption.selectOption({ label });
+  }
+
+  async EnterExtraChargeAmmount(){
+    await expect(this.EnterExtraCharge).toBeVisible({
+        timeout:60000,
+    })
+
+    await this.EnterExtraCharge.fill("65.00");
+  }
+  
+     async SelectISActiveDetail(label: string) {
+    await this.ChooseIsActive.selectOption({ label });
+  }
+
+    async ClickOnSubmitButtonPayStack() {
+    await expect(this.PressSubmitButton).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.PressSubmitButton.click();
   }
 }
