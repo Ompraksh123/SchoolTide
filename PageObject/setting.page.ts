@@ -19,6 +19,26 @@ export default class SettingPage {
   readonly ExtraCharge: Locator;
   readonly Update: Locator;
 
+  // Setting ---> Payment Setting --> PayUMoney
+  readonly PayUmoney: Locator;
+  readonly FillPayuMoneyKey: Locator;
+  readonly FillkeySalt: Locator;
+  readonly IsDemo: Locator;
+  readonly FillExtraCharge: Locator;
+  readonly IsActive: Locator;
+  readonly UpdateButton: Locator;
+
+  // Setting ---> Payment Setting -->PayTm
+  readonly payTm: Locator;
+  readonly MerchantKey: Locator;
+  readonly MerchantMid: Locator;
+  readonly Website: Locator;
+  readonly IndustryType: Locator;
+  readonly IsSelectDemo: Locator;
+  readonly EditExtraCharge: Locator;
+  readonly isActiveOption: Locator;
+  readonly UpdateButtonTm: Locator;
+
   constructor(page: Page) {
     this.page = page;
 
@@ -57,6 +77,38 @@ export default class SettingPage {
     this.ExtraCharge = page.locator("//input[@name='paypal_extra_charge']");
 
     this.Update = page.locator("(//button[@id='send'])[1]");
+
+    this.PayUmoney = page.locator("//a[@href='#tab_pumoney_setting']");
+
+    this.FillPayuMoneyKey = page.locator("//input[@name='payumoney_key']");
+
+    this.FillkeySalt = page.locator("//input[@name='payumoney_salt']");
+
+    this.IsDemo = page.locator("//select[@name='payumoney_demo']");
+
+    this.FillExtraCharge = page.locator("//input[@name='payu_extra_charge']");
+
+    this.IsActive = page.locator("//select[@name='payumoney_status']");
+
+    this.UpdateButton = page.locator("(//button[@type='submit'])[1]");
+
+    this.payTm = page.locator("//a[@href='#tab_paytm_setting']");
+
+    this.MerchantKey = page.locator("//input[@name='paytm_merchant_key']");
+
+    this.MerchantMid = page.locator("//input[@name='paytm_merchant_mid']");
+
+    this.Website = page.locator("//input[@name='paytm_merchant_website']");
+
+    this.IndustryType = page.locator("//input[@name='paytm_industry_type']");
+
+    this.IsSelectDemo = page.locator("//select[@name='paytm_demo']");
+
+    this.EditExtraCharge = page.locator("//input[@name='paytm_extra_charge']");
+
+    this.isActiveOption = page.locator("//select[@name='paytm_status']");
+
+    this.UpdateButtonTm = page.locator("(//button[@id='send'])[5]");
   }
 
   async clickSettingDropdown() {
@@ -168,5 +220,104 @@ export default class SettingPage {
     });
 
     await this.Update.click();
+  }
+
+  // Setting ---> Payment Setting --> PayUMoney
+  async ClickOnPayUMoney() {
+    await expect(this.PayUmoney).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.PayUmoney.click();
+  }
+
+  async ClickOnPayUMoneyKey() {
+    await expect(this.FillPayuMoneyKey).toBeVisible({
+      timeout: 60000,
+    });
+    await this.FillPayuMoneyKey.fill("gtKFFxRX");
+  }
+
+  async SelectIsDemoOption(label: string) {
+    await this.IsDemo.selectOption({ label });
+  }
+
+  async ClickOnExtraCharge(value: string) {
+    await this.FillExtraCharge.fill(value);
+  }
+
+  async SelectIsActive(label: string) {
+    await this.IsActive.selectOption({ label });
+  }
+
+  async ClickOnSubmitButtonPayUMoney() {
+    await expect(this.UpdateButton).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.UpdateButton.click();
+  }
+
+  // Setting ---> Payment Setting --> PayTm
+  async ClickOnPayTm() {
+    await expect(this.payTm).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.payTm.click();
+  }
+
+  async FillMerchantKey() {
+    await expect(this.MerchantKey).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.MerchantKey.fill("kbzk1DSbJiV_O3p567");
+  }
+
+  async FillMerchantMID() {
+    await expect(this.MerchantMid).toBeVisible({
+      timeout: 60000,
+    });
+    await this.MerchantMid.fill("DIY12386817555501617666000");
+  }
+
+  async FillWebsiteDetail() {
+    await expect(this.Website).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.Website.fill("WEBSTAGINGFor");
+  }
+
+  async FillRetailType() {
+    await expect(this.IndustryType).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.IndustryType.fill("Healthcare");
+  }
+
+  async SelectIsDemo(label: string) {
+    await this.IsSelectDemo.selectOption({ label });
+  }
+
+  async FillExtraCharges() {
+    await expect(this.EditExtraCharge).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.EditExtraCharge.fill("40.00");
+  }
+
+  async SelectISActive(label: string) {
+    await this.isActiveOption.selectOption({ label });
+  }
+  async ClickOnSubmitButtonPayTm() {
+    await expect(this.UpdateButtonTm).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.UpdateButtonTm.click();
   }
 }

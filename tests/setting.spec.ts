@@ -69,4 +69,59 @@ test.describe("Setting", { tag: "@Batch2" }, () => {
 
     await setting.ClickOnSubmitButtonPayment();
   });
+
+  test("Verify user successfully clicks on PayUMoney Tab in  Setting", async ({
+    page,
+  }) => {
+    const setting = new SettingPage(page);
+
+    await setting.clickSettingDropdown();
+    await setting.ClickOnPaymentTab();
+    await setting.ClickOnPayUMoney();
+    await page.waitForTimeout(3000);
+    await setting.ClickOnPayUMoneyKey();
+    await expect(setting.FillPayuMoneyKey).toHaveValue("gtKFFxRX");
+    await page.waitForTimeout(3000);
+    await setting.SelectIsDemoOption("Yes");
+    await expect(setting.IsDemo.locator("option:checked")).toHaveText("Yes");
+    await setting.ClickOnExtraCharge("75");
+    await expect(setting.FillExtraCharge).toHaveValue("75");
+    await page.waitForTimeout(3000);
+    await setting.SelectIsActive("No");
+    await expect(setting.IsActive.locator("option:checked")).toHaveText("No");
+    await setting.ClickOnSubmitButtonPayUMoney();
+    await page.waitForTimeout(3000);
+  });
+
+  test.only("Verify user successfully clicks on PayTm Tab in  Setting", async ({
+    page,
+  }) => {
+    const setting = new SettingPage(page);
+
+    await setting.clickSettingDropdown();
+    await setting.ClickOnPaymentTab();
+    await setting.ClickOnPayTm();
+    await page.waitForTimeout(3000);
+    await setting.FillMerchantKey();
+    await expect(setting.MerchantKey).toHaveValue("kbzk1DSbJiV_O3p567");
+    await setting.FillMerchantMID();
+    await expect(setting.MerchantMid).toHaveValue("DIY12386817555501617666000");
+    await setting.FillWebsiteDetail();
+    await expect(setting.Website).toHaveValue("WEBSTAGINGFor");
+    await page.waitForTimeout(3000);
+    await setting.FillRetailType();
+    await expect(setting.IndustryType).toHaveValue("Healthcare");
+    await setting.SelectIsDemo("No");
+    await expect(setting.IsSelectDemo.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await setting.FillExtraCharges();
+    await expect(setting.EditExtraCharge).toHaveValue("40.00");
+    await page.waitForTimeout(3000);
+    await setting.SelectISActive("No");
+    await expect(setting.isActiveOption.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await setting.ClickOnSubmitButtonPayTm();
+  });
 });
