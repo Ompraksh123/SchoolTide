@@ -38,4 +38,31 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await smsSetting.ClickOnSubmitButton();
     await page.waitForTimeout(3000);
   });
+
+
+  test("Verify user successfully clicks on Twilio in SMS Setting Tab", async ({
+      page,
+    }) => {
+      const smsSetting = new SmsSetting(page);
+  
+    await smsSetting.clickSettingDropdown();
+    await smsSetting.clickSmsSettingTab();
+    await smsSetting.ClickOnTwilio();
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnAccountSID("AC2636380000");
+    await expect(smsSetting.AccountSID).toHaveValue("AC2636380000");     
+    await smsSetting.ClickAuthToken("your_auth_token_here_32_chars_yy");
+    await expect(smsSetting.AuthToken).toHaveValue("your_auth_token_here_32_chars_yy");
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickFromNumber("+1500500098");
+    await expect(smsSetting.FillFromNumber).toHaveValue("+1500500098");
+    await smsSetting.SelectISActiveDetails("No");
+    await expect(smsSetting.ChooseIsActives.locator("option:checked")).toHaveText(
+      "No",
+    );
+
+    await smsSetting.ClickOnSubmitIconButton();
+    await page.waitForTimeout(3000);
+
+    });  
 });
