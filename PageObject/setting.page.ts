@@ -346,7 +346,7 @@ export default class SettingPage {
 
   // Setting ---> Payment Setting --> PayTm
 
-  async ClickOnPayStack(){
+  async ClickOnPayStack() {
     await expect(this.PayStack).toBeVisible({
       timeout: 60000,
     });
@@ -354,18 +354,18 @@ export default class SettingPage {
     await this.PayStack.click();
   }
 
-  async FillSecretKey(){
+  async FillSecretKey() {
     await expect(this.SecretKey).toBeVisible({
-        timeout:60000,
-    })
+      timeout: 60000,
+    });
 
-     await this.SecretKey.fill("sk_test_1234567890abcdef");
+    await this.SecretKey.fill("sk_test_1234567890abcdef");
   }
 
-  async FillPublicKey(){
+  async FillPublicKey() {
     await expect(this.PublicKey).toBeVisible({
-        timeout:60000,
-    })
+      timeout: 60000,
+    });
 
     await this.PublicKey.fill("pk_test_1234567890abcdef");
   }
@@ -374,19 +374,19 @@ export default class SettingPage {
     await this.SelectDeoOption.selectOption({ label });
   }
 
-  async EnterExtraChargeAmmount(){
+  async EnterExtraChargeAmmount() {
     await expect(this.EnterExtraCharge).toBeVisible({
-        timeout:60000,
-    })
+      timeout: 60000,
+    });
 
     await this.EnterExtraCharge.fill("65.00");
   }
-  
-     async SelectISActiveDetail(label: string) {
+
+  async SelectISActiveDetail(label: string) {
     await this.ChooseIsActive.selectOption({ label });
   }
 
-    async ClickOnSubmitButtonPayStack() {
+  async ClickOnSubmitButtonPayStack() {
     await expect(this.PressSubmitButton).toBeVisible({
       timeout: 60000,
     });

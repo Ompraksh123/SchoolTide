@@ -137,7 +137,7 @@ test.describe("Setting", { tag: "@Batch2" }, () => {
     await setting.FillSecretKey();
     await expect(setting.SecretKey).toHaveValue("sk_test_1234567890abcdef");
     await setting.FillPublicKey();
-    await expect(setting.PublicKey).toHaveValue("pk_test_1234567890abcdef");   
+    await expect(setting.PublicKey).toHaveValue("pk_test_1234567890abcdef");
     await setting.SelectISDemo("No");
     await expect(setting.SelectDeoOption.locator("option:checked")).toHaveText(
       "No",
@@ -149,7 +149,6 @@ test.describe("Setting", { tag: "@Batch2" }, () => {
     await expect(setting.ChooseIsActive.locator("option:checked")).toHaveText(
       "No",
     );
-    await setting.ClickOnSubmitButtonPayStack(); 
-
+    await setting.ClickOnSubmitButtonPayStack();
   });
 });
