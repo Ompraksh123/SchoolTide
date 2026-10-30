@@ -93,7 +93,7 @@ test.describe("Setting", { tag: "@Batch2" }, () => {
     await page.waitForTimeout(3000);
   });
 
-  test.only("Verify user successfully clicks on PayTm Tab in  Setting", async ({
+  test("Verify user successfully clicks on PayTm Tab in  Setting", async ({
     page,
   }) => {
     const setting = new SettingPage(page);
