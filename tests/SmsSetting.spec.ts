@@ -106,9 +106,7 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     );
     await page.waitForTimeout(3000);
     await smsSetting.fillSenderID("TESTIDRS");
-    await expect(smsSetting.SenderId).toHaveValue(
-      "TESTIDRS",
-    );
+    await expect(smsSetting.SenderId).toHaveValue("TESTIDRS");
     await smsSetting.SelectISActiveMSG("No");
     await expect(smsSetting.IsActiveMSG.locator("option:checked")).toHaveText(
       "No",
