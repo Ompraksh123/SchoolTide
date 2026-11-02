@@ -115,7 +115,7 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await page.waitForTimeout(3000);
   });
 
-   test.only("Verify user successfully clicks on Pilvo in SMS Setting Tab", async ({
+  test.only("Verify user successfully clicks on Pilvo in SMS Setting Tab", async ({
     page,
   }) => {
     const smsSetting = new SmsSetting(page);
@@ -124,24 +124,21 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await smsSetting.ClickOnPlivo();
     await page.waitForTimeout(3000);
     await smsSetting.fillAuthID("MAYRT11232342000");
-    await expect(smsSetting.AuthID).toHaveValue(
-      "MAYRT11232342000",
+    await expect(smsSetting.AuthID).toHaveValue("MAYRT11232342000");
+    await smsSetting.ClickOnAuthTokens(
+      "Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZguty",
     );
-    await smsSetting.ClickOnAuthTokens("Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZguty");
-    await expect(smsSetting.AuthTokens).toHaveValue("Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZguty",);    
+    await expect(smsSetting.AuthTokens).toHaveValue(
+      "Zm9vYmFyYmF6cXV4MTIzNDU2Nzg5MGFiY2RlZguty",
+    );
     await smsSetting.ClickOnFromNumberPilvo("+0076543200");
     await expect(smsSetting.FromNumberPilvo).toHaveValue("+0076543200");
     await page.waitForTimeout(3000);
     await smsSetting.SelectIsActivePilvo("No");
     await expect(smsSetting.IsActivePilvo.locator("option:checked")).toHaveText(
       "No",
-    )   
-    await smsSetting.ClickOnUpdateButtonPilvo()
+    );
+    await smsSetting.ClickOnUpdateButtonPilvo();
     await page.waitForTimeout(3000);
-
-    
-  })
-  
-
-
+  });
 });

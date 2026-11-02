@@ -36,8 +36,8 @@ export default class SMsSettingPage {
 
   //Setting --> SMS Setting ---> Pilvo
   readonly Pilvo: Locator;
-  readonly AuthID : Locator;
-  readonly AuthTokens : Locator;
+  readonly AuthID: Locator;
+  readonly AuthTokens: Locator;
   readonly FromNumberPilvo: Locator;
   readonly IsActivePilvo: Locator;
   readonly UpdateButtonPilvo: Locator;
@@ -101,7 +101,7 @@ export default class SMsSettingPage {
 
     this.AuthTokens = page.locator("//input[@name='plivo_auth_token']");
 
-    this.FromNumberPilvo =page.locator("//input[@name='plivo_from_number']");
+    this.FromNumberPilvo = page.locator("//input[@name='plivo_from_number']");
 
     this.IsActivePilvo = page.locator("//select[@name='plivo_status']");
 
@@ -256,7 +256,7 @@ export default class SMsSettingPage {
   }
 
   //Setting --> SMS Setting ---> Plivo
-   async ClickOnPlivo() {
+  async ClickOnPlivo() {
     await expect(this.Pilvo).toBeVisible({
       timeout: 60000,
     });
@@ -267,24 +267,24 @@ export default class SMsSettingPage {
   async fillAuthID(value: string) {
     await expect(this.AuthID).toBeVisible({ timeout: 60000 });
     await this.AuthID.fill(value);
-  } 
-  
-  async ClickOnAuthTokens(value: string){
-    await expect(this.AuthTokens).toBeVisible({timeout:6000});
+  }
+
+  async ClickOnAuthTokens(value: string) {
+    await expect(this.AuthTokens).toBeVisible({ timeout: 6000 });
     await this.AuthTokens.fill(value);
   }
 
-  async ClickOnFromNumberPilvo(value: string){
-    await expect(this.FromNumberPilvo).toBeVisible({timeout:6000})
+  async ClickOnFromNumberPilvo(value: string) {
+    await expect(this.FromNumberPilvo).toBeVisible({ timeout: 6000 });
     await this.FromNumberPilvo.fill(value);
   }
 
-  async SelectIsActivePilvo(label: string){
-    await this.IsActivePilvo.selectOption({label});
+  async SelectIsActivePilvo(label: string) {
+    await this.IsActivePilvo.selectOption({ label });
   }
 
-  async ClickOnUpdateButtonPilvo(){
-    await expect(this.UpdateButtonPilvo).toBeVisible({timeout:6000,})
+  async ClickOnUpdateButtonPilvo() {
+    await expect(this.UpdateButtonPilvo).toBeVisible({ timeout: 6000 });
     await this.UpdateButtonPilvo.click();
   }
 }
