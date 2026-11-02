@@ -34,6 +34,14 @@ export default class SMsSettingPage {
   readonly IsActiveMSG: Locator;
   readonly UpdateMSG: Locator;
 
+  //Setting --> SMS Setting ---> Pilvo
+  readonly Pilvo: Locator;
+  readonly AuthID : Locator;
+  readonly AuthTokens : Locator;
+  readonly FromNumberPilvo: Locator;
+  readonly IsActivePilvo: Locator;
+  readonly UpdateButtonPilvo: Locator;
+
   constructor(page: Page) {
     this.page = page;
 
@@ -86,6 +94,18 @@ export default class SMsSettingPage {
     this.IsActiveMSG = page.locator("//select[@name='msg91_status']");
 
     this.UpdateMSG = page.locator("(//button[@id='send'])[4]");
+
+    this.Pilvo = page.locator("//a[@href='#tab_plivo_setting']");
+
+    this.AuthID = page.locator("//input[@name='plivo_auth_id']");
+
+    this.AuthTokens = page.locator("//input[@name='plivo_auth_token']");
+
+    this.FromNumberPilvo =page.locator("//input[@name='plivo_from_number']");
+
+    this.IsActivePilvo = page.locator("//select[@name='plivo_status']");
+
+    this.UpdateButtonPilvo = page.locator("(//button[@id='send'])[5]");
   }
 
   async clickSettingDropdown() {
@@ -233,5 +253,38 @@ export default class SMsSettingPage {
     });
 
     await this.UpdateMSG.click();
+  }
+
+  //Setting --> SMS Setting ---> Plivo
+   async ClickOnPlivo() {
+    await expect(this.Pilvo).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.Pilvo.click();
+  }
+
+  async fillAuthID(value: string) {
+    await expect(this.AuthID).toBeVisible({ timeout: 60000 });
+    await this.AuthID.fill(value);
+  } 
+  
+  async ClickOnAuthTokens(value: string){
+    await expect(this.AuthTokens).toBeVisible({timeout:6000});
+    await this.AuthTokens.fill(value);
+  }
+
+  async ClickOnFromNumberPilvo(value: string){
+    await expect(this.FromNumberPilvo).toBeVisible({timeout:6000})
+    await this.FromNumberPilvo.fill(value);
+  }
+
+  async SelectIsActivePilvo(label: string){
+    await this.IsActivePilvo.selectOption({label});
+  }
+
+  async ClickOnUpdateButtonPilvo(){
+    await expect(this.UpdateButtonPilvo).toBeVisible({timeout:6000,})
+    await this.UpdateButtonPilvo.click();
   }
 }
