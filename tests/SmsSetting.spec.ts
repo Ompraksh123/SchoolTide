@@ -115,7 +115,7 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await page.waitForTimeout(3000);
   });
 
-  test.only("Verify user successfully clicks on Pilvo in SMS Setting Tab", async ({
+  test("Verify user successfully clicks on Pilvo in SMS Setting Tab", async ({
     page,
   }) => {
     const smsSetting = new SmsSetting(page);
@@ -140,5 +140,58 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     );
     await smsSetting.ClickOnUpdateButtonPilvo();
     await page.waitForTimeout(3000);
+  });
+
+   test("Verify user successfully clicks on Text Local in SMS Setting Tab", async ({
+    page,
+  }) => {
+    const smsSetting = new SmsSetting(page);
+    await smsSetting.clickSettingDropdown();
+    await smsSetting.clickSmsSettingTab();
+    await smsSetting.ClickOnTextLocal();
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnUserNameTextLocal("testure@example.com");
+    await expect(smsSetting.UserNameTextLocal).toHaveValue("testure@example.com");
+    await smsSetting.ClickOnHashKeyTextLocal(
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b200",
+    );
+    await expect(smsSetting.HashKeyTextLocal).toHaveValue(
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b200",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnSenderIdTextLocal("TESTIDRS");
+    await expect(smsSetting.SenderIdTextLocal).toHaveValue("TESTIDRS");
+    await page.waitForTimeout(3000);
+    await smsSetting.SelectIsActiveTextLocal("No");
+    await expect(smsSetting.IsActiveTextLocal.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await smsSetting.ClickOnUpdateButtonTextLocal();
+    await page.waitForTimeout(3000);
+  });  
+  
+  test("Verify user successfully clicks on More dropdown", async ({
+    page,
+  }) => {
+    const smsSetting = new SmsSetting(page);
+    await smsSetting.clickSettingDropdown();
+    await smsSetting.clickSmsSettingTab();
+    await smsSetting.ClickOnMoreDropdownIndicator();    
+    await smsSetting.ClickOnBulkPk();    
+    await smsSetting.ClickOnBulkPkUserName("testuserbulkpk");
+    await expect(smsSetting.BulkPkUserName).toHaveValue("testuserbulkpk");    
+    await smsSetting.ClickOnBulkPkUserPassword("Test@123456");
+    await expect(smsSetting.BulkPkUserPassword).toHaveValue("Test@123456");    
+    await smsSetting.ClickSenderIdBulkPk("TESTIDRS");
+    await expect(smsSetting.SenderIdBulkPk).toHaveValue("TESTIDRS");
+    await page.waitForTimeout(3000);
+    await smsSetting.SelectIsActiveBulkPk("No");
+    await expect(smsSetting.IsActiveBulkPk.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnUpdateButtonBulkPk();
+    await page.waitForTimeout(3000);
+
   });
 });

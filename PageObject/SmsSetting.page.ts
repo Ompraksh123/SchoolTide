@@ -42,6 +42,24 @@ export default class SMsSettingPage {
   readonly IsActivePilvo: Locator;
   readonly UpdateButtonPilvo: Locator;
 
+  //Setting --> SMS Setting ---> Text Local
+  readonly TextLocal: Locator;
+  readonly UserNameTextLocal: Locator;
+  readonly HashKeyTextLocal: Locator;
+  readonly SenderIdTextLocal: Locator;
+  readonly IsActiveTextLocal: Locator;
+  readonly UpdateButtonTextLocal: Locator;
+
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Bulk Pk 
+  readonly MoreDropdownIndicator: Locator;
+  readonly BulkPk: Locator;
+  readonly BulkPkUserName: Locator;
+  readonly BulkPkUserPassword: Locator;
+  readonly SenderIdBulkPk: Locator;
+  readonly IsActiveBulkPk: Locator;
+  readonly UpdateButtonBulkPk: Locator;
+
+   
   constructor(page: Page) {
     this.page = page;
 
@@ -106,6 +124,33 @@ export default class SMsSettingPage {
     this.IsActivePilvo = page.locator("//select[@name='plivo_status']");
 
     this.UpdateButtonPilvo = page.locator("(//button[@id='send'])[5]");
+
+    this.TextLocal = page.locator("//a[@href='#tab_textlocal_setting']");
+
+    this.UserNameTextLocal = page.locator("//input[@name='textlocal_username']");
+    
+    this.HashKeyTextLocal = page.locator("//input[@name='textlocal_hash_key']");
+
+    this.SenderIdTextLocal = page.locator("//input[@name='textlocal_sender_id']");
+
+    this.IsActiveTextLocal = page.locator("//select[@name='textlocal_status']");
+    
+    this.UpdateButtonTextLocal = page.locator("(//button[@id='send'])[6]");
+
+    this.MoreDropdownIndicator = page.locator("//a[normalize-space()='More']");
+
+    this.BulkPk = page.locator("//a[@href='#tab_bulkpk_setting']");
+
+    this.BulkPkUserName = page.locator("//input[@name='bulk_pk_username']");
+
+    this.BulkPkUserPassword = page.locator("//input[@name='bulk_pk_password']");
+    
+    this.SenderIdBulkPk = page.locator("//input[@name='bulk_pk_sender_id']");
+
+    this.IsActiveBulkPk = page.locator("//select[@name='bulk_pk_status']");
+
+    this.UpdateButtonBulkPk = page.locator("(//button[@type='submit'])[10]");
+    
   }
 
   async clickSettingDropdown() {
@@ -286,5 +331,74 @@ export default class SMsSettingPage {
   async ClickOnUpdateButtonPilvo() {
     await expect(this.UpdateButtonPilvo).toBeVisible({ timeout: 6000 });
     await this.UpdateButtonPilvo.click();
+  }
+
+  //Setting --> SMS Setting ---> Text Local
+  async ClickOnTextLocal() {
+    await expect(this.TextLocal).toBeVisible({
+      timeout: 60000,
+    });
+
+    await this.TextLocal.click();
+  }
+
+  async ClickOnUserNameTextLocal(value: string) {
+    await expect(this.UserNameTextLocal).toBeVisible({ timeout: 6000 });
+    await this.UserNameTextLocal.fill(value);
+  }
+
+  async ClickOnHashKeyTextLocal(value: string) {
+    await expect(this.HashKeyTextLocal).toBeVisible({ timeout: 6000 });
+    await this.HashKeyTextLocal.fill(value);
+  }
+
+  async ClickOnSenderIdTextLocal(value: string) {
+    await expect(this.SenderIdTextLocal).toBeVisible({ timeout: 6000 });
+    await this.SenderIdTextLocal.fill(value);
+  }
+
+  async SelectIsActiveTextLocal(label: string) {
+    await this.IsActiveTextLocal.selectOption({ label });
+  }
+
+  async ClickOnUpdateButtonTextLocal() {
+    await expect(this.UpdateButtonTextLocal).toBeVisible({ timeout: 6000 });
+    await this.UpdateButtonTextLocal.click();
+  }
+
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Bulk Pk 
+
+  async ClickOnMoreDropdownIndicator() {
+    await expect(this.MoreDropdownIndicator).toBeVisible({ timeout: 6000 });
+    await this.MoreDropdownIndicator.click();
+  }
+
+  async ClickOnBulkPk() {
+    await expect(this.BulkPk).toBeVisible({ timeout: 6000 });
+    await this.BulkPk.click();
+  }
+  async ClickOnBulkPkUserName(value: string) {
+    await expect(this.BulkPkUserName).toBeVisible({timeout:6000});
+    await expect(this.BulkPkUserName).toBeVisible({timeout:6000});
+    await this.BulkPkUserName.fill(value);
+  }  
+
+  async ClickOnBulkPkUserPassword(value: string) {
+    await expect(this.BulkPkUserPassword).toBeVisible({timeout:6000});
+    await this.BulkPkUserPassword.fill(value);
+  }
+
+  async ClickSenderIdBulkPk(value: string) {
+    await expect(this.SenderIdBulkPk).toBeVisible({timeout:6000});
+   await this.SenderIdBulkPk.fill(value);
+  }
+  
+  async SelectIsActiveBulkPk(label: string) {
+    await this.IsActiveBulkPk.selectOption({ label });
+  }
+
+  async ClickOnUpdateButtonBulkPk() {
+    await expect(this.UpdateButtonBulkPk).toBeVisible({ timeout: 6000 });
+    await this.UpdateButtonBulkPk.click();
   }
 }
