@@ -194,4 +194,96 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await page.waitForTimeout(3000);
 
   });
+
+   test("Verify user successfully clicks on More dropdown and selects SMS Cluster", async ({
+    page,
+  }) => {
+    const smsSetting = new SmsSetting(page);
+    await smsSetting.clickSettingDropdown();
+    await smsSetting.clickSmsSettingTab();
+    await smsSetting.ClickOnMoreDropdownIndicator();     
+    await smsSetting.ClickOnSMSCluster();    
+    await smsSetting.ClickOnAuthKeySMSCluster("123456AbCdEfGhIjKl7890mnOpQrStuv11");
+    await expect(smsSetting.AuthKeySMSCluster).toHaveValue(
+      "123456AbCdEfGhIjKl7890mnOpQrStuv11",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnRouterIdSMSCluster("1234567890");
+    await expect(smsSetting.RouterIdSMSCluster).toHaveValue("1234567890");
+    await page.waitForTimeout(3000);
+    await smsSetting.clickOnSenderIdSMSCluster("TESTIDRS");
+    await expect(smsSetting.SenderIdSMSCluster).toHaveValue("TESTIDRS");
+    await page.waitForTimeout(3000);  
+    await smsSetting.SelectIsActiveSMSCluster("No");
+    await expect(smsSetting.IsActiveSMSCluster.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnUpdateButtonSMSCluster();
+    await page.waitForTimeout(3000);
+
+  });
+
+  test("Verify user successfully clicks on More dropdown and selects Alpha.net Cluster", async ({
+    page,
+  }) => {
+    const smsSetting = new SmsSetting(page);
+    await smsSetting.clickSettingDropdown();
+    await smsSetting.clickSmsSettingTab();
+    await smsSetting.ClickOnMoreDropdownIndicator();
+    await smsSetting.ClickOnAlphaNet();
+    await smsSetting.ClickOnUserNameAlphaNet("testuseralpha");
+    await expect(smsSetting.UserNameAlphaNet).toHaveValue("testuseralpha");
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnHashKeyAlphaNet(
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b200",
+    );
+    await expect(smsSetting.HashKeyAlphaNet).toHaveValue(
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b200",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.SelectSMSTypeAlphaNet("Unicode");
+    await expect(smsSetting.SMSTypeAlphaNet.locator("option:checked")).toHaveText(
+      "Unicode",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.SelectIsActiveAlphaNet("No");
+    await expect(smsSetting.IsActiveAlphaNet.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnUpdateButtonAlphaNet();
+    await page.waitForTimeout(3000);  
+
+  }); 
+
+  test("Verify user successfully clicks on More dropdown and selects BDBulk Cluster", async ({
+    page,
+  }) => {
+    const smsSetting = new SmsSetting(page);
+    await smsSetting.clickSettingDropdown();
+    await smsSetting.clickSmsSettingTab();
+    await smsSetting.ClickOnMoreDropdownIndicator();
+    await smsSetting.ClickOnBDBulk();
+    await smsSetting.ClickOnHashKeyBDBulk(
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b200",
+    );
+    await expect(smsSetting.HashKeyBDBulk).toHaveValue(
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b200",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.SelectSMSTypeBDBulk("Unicode");
+    await expect(smsSetting.SMSTypeBDBulk.locator("option:checked")).toHaveText(
+      "Unicode",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.SelectIsActiveBDBulk("No");
+    await expect(smsSetting.IsActiveBDBulk.locator("option:checked")).toHaveText(
+      "No",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnUpdateButtonBDBulk();
+    await page.waitForTimeout(3000);
+
+  });
 });

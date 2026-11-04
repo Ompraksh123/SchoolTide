@@ -59,6 +59,29 @@ export default class SMsSettingPage {
   readonly IsActiveBulkPk: Locator;
   readonly UpdateButtonBulkPk: Locator;
 
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> SMS Cluster
+  readonly SMSCluster: Locator; 
+  readonly AuthKeySMSCluster: Locator;
+  readonly RouterIdSMSCluster: Locator;
+  readonly SenderIdSMSCluster: Locator;
+  readonly IsActiveSMSCluster: Locator;
+  readonly UpdateButtonSMSCluster: Locator;
+
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Alpha.Net
+  readonly AlphaNet: Locator;
+  readonly UserNameAlphaNet: Locator;
+  readonly HashKeyAlphaNet: Locator;
+  readonly SMSTypeAlphaNet: Locator;
+  readonly IsActiveAlphaNet: Locator
+  readonly UpdateButtonAlphaNet: Locator;
+
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> BD Bulk
+  readonly BDBulk: Locator
+  readonly HashKeyBDBulk: Locator
+  readonly SMSTypeBDBulk: Locator;
+  readonly IsActiveBDBulk: Locator;
+  readonly UpdateButtonBDBulk: Locator;
+
    
   constructor(page: Page) {
     this.page = page;
@@ -150,6 +173,40 @@ export default class SMsSettingPage {
     this.IsActiveBulkPk = page.locator("//select[@name='bulk_pk_status']");
 
     this.UpdateButtonBulkPk = page.locator("(//button[@type='submit'])[10]");
+
+    this.SMSCluster = page.locator("//a[@href='#tab_cluster_setting']");
+
+    this.AuthKeySMSCluster = page.locator("//input[@name='cluster_auth_key']");
+
+    this.RouterIdSMSCluster = page.locator("//input[@name='cluster_router']");
+
+    this.SenderIdSMSCluster = page.locator("//input[@name='cluster_sender_id']");
+
+    this.IsActiveSMSCluster = page.locator("//select[@name='cluster_status']");
+
+    this.UpdateButtonSMSCluster = page.locator("(//button[@type='submit'])[11]");
+
+    this.AlphaNet = page.locator("//a[@href='#tab_alpha_setting']");
+
+    this.UserNameAlphaNet = page.locator("//input[@name='alpha_username']");
+
+    this.HashKeyAlphaNet = page.locator("//input[@name='alpha_hash']");
+
+    this.SMSTypeAlphaNet = page.locator("//select[@name='alpha_type']");
+
+    this.IsActiveAlphaNet = page.locator("//select[@name='alpha_status']");
+
+    this.UpdateButtonAlphaNet = page.locator("(//button[@type='submit'])[12]");
+
+    this.BDBulk = page.locator("//a[@href='#tab_bdbulk_setting']");
+
+    this.HashKeyBDBulk = page.locator("//input[@name='bdbulk_hash']");
+
+    this.SMSTypeBDBulk = page.locator("//select[@name='bdbulk_type']");
+
+    this.IsActiveBDBulk = page.locator("//select[@name='bdbulk_status']");
+
+    this.UpdateButtonBDBulk = page.locator("(//button[@type='submit'])[13]"); 
     
   }
 
@@ -401,4 +458,87 @@ export default class SMsSettingPage {
     await expect(this.UpdateButtonBulkPk).toBeVisible({ timeout: 6000 });
     await this.UpdateButtonBulkPk.click();
   }
+
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> SMS Cluster
+  async ClickOnSMSCluster() {
+    await expect(this.SMSCluster).toBeVisible({ timeout: 6000 });
+    await this.SMSCluster.click();
+  }
+
+  async ClickOnAuthKeySMSCluster(value: string) {
+    await expect(this.AuthKeySMSCluster).toBeVisible({ timeout: 6000 });
+    await this.AuthKeySMSCluster.fill(value);
+  }
+
+  async ClickOnRouterIdSMSCluster(value: string) {
+    await expect(this.RouterIdSMSCluster).toBeVisible({ timeout: 6000 });
+    await this.RouterIdSMSCluster.fill(value);
+  }
+
+  async clickOnSenderIdSMSCluster(value: string) {
+    await expect(this.SenderIdSMSCluster).toBeVisible({ timeout: 6000 });
+    await this.SenderIdSMSCluster.fill(value);
+  }
+
+  async SelectIsActiveSMSCluster(label: string) {
+    await this.IsActiveSMSCluster.selectOption({ label });
+  }
+
+  async ClickOnUpdateButtonSMSCluster() {
+    await expect(this.UpdateButtonSMSCluster).toBeVisible({ timeout: 6000 });
+    await this.UpdateButtonSMSCluster.click();
+  }
+
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Alpha.Net
+  async ClickOnAlphaNet() {
+    await expect(this.AlphaNet).toBeVisible({ timeout: 6000 });
+    await this.AlphaNet.click();
+  }
+
+  async ClickOnUserNameAlphaNet(value: string) {
+    await expect(this.UserNameAlphaNet).toBeVisible({ timeout: 6000 });
+    await this.UserNameAlphaNet.fill(value);
+  }
+
+  async ClickOnHashKeyAlphaNet(value: string) {
+    await expect(this.HashKeyAlphaNet).toBeVisible({ timeout: 6000 });
+    await this.HashKeyAlphaNet.fill(value);
+  }
+
+  async SelectSMSTypeAlphaNet(label: string) {
+    await this.SMSTypeAlphaNet.selectOption({ label });
+  }
+
+  async SelectIsActiveAlphaNet(label: string) {
+    await this.IsActiveAlphaNet.selectOption({ label });
+  }
+
+  async ClickOnUpdateButtonAlphaNet() {
+    await expect(this.UpdateButtonAlphaNet).toBeVisible({ timeout: 6000 });
+    await this.UpdateButtonAlphaNet.click();
+  }
+
+  async ClickOnBDBulk() {
+    await expect(this.BDBulk).toBeVisible({ timeout: 6000 });
+    await this.BDBulk.click();
+  }
+
+  async ClickOnHashKeyBDBulk(value: string) {
+    await expect(this.HashKeyBDBulk).toBeVisible({ timeout: 6000 });
+    await this.HashKeyBDBulk.fill(value);
+  }
+
+  async SelectSMSTypeBDBulk(label: string) {
+    await this.SMSTypeBDBulk.selectOption({ label });
+  }
+
+  async SelectIsActiveBDBulk(label: string) {
+    await this.IsActiveBDBulk.selectOption({ label });
+  }
+
+  async ClickOnUpdateButtonBDBulk() {
+    await expect(this.UpdateButtonBDBulk).toBeVisible({ timeout: 6000 });
+    await this.UpdateButtonBDBulk.click();
+  } 
+
 }
