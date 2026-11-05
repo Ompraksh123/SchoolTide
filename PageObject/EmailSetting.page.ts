@@ -49,62 +49,62 @@ export default class EmailSettings {
     await this.EmailSetting.click();
   }
 
-  async fillEmailSettings(value: string){
+  async fillEmailSettings(value: string) {
     await expect(this.emailprotocol).toBeVisible({ timeout: 60000 });
     await this.emailprotocol.selectOption(value);
   }
 
-  async fillSMTPHost(value: string){
+  async fillSMTPHost(value: string) {
     await expect(this.SMTPHost).toBeVisible({ timeout: 60000 });
     await this.SMTPHost.fill(value);
   }
 
-  async fillSMTPPort(value: string){
+  async fillSMTPPort(value: string) {
     await expect(this.SMTPPort).toBeVisible({ timeout: 60000 });
     await this.SMTPPort.fill(value);
   }
 
-  async fillSMTPUsername(value: string){
+  async fillSMTPUsername(value: string) {
     await expect(this.SMTPUsername).toBeVisible({ timeout: 60000 });
     await this.SMTPUsername.fill(value);
   }
 
-  async fillSMTPPassword(value: string){
+  async fillSMTPPassword(value: string) {
     await expect(this.SMTPPassowrd).toBeVisible({ timeout: 60000 });
     await this.SMTPPassowrd.fill(value);
   }
 
-  async fillSMTPSecurity(value: string){
+  async fillSMTPSecurity(value: string) {
     await expect(this.SMTPSecurity).toBeVisible({ timeout: 60000 });
     await this.SMTPSecurity.selectOption(value);
   }
 
-  async fillSMTPTimeout(value: string){
+  async fillSMTPTimeout(value: string) {
     await expect(this.SMTPTimeout).toBeVisible({ timeout: 60000 });
     await this.SMTPTimeout.fill(value);
   }
 
-  async fillEmailType(value: string){
+  async fillEmailType(value: string) {
     await expect(this.EmailType).toBeVisible({ timeout: 60000 });
     await this.EmailType.selectOption(value);
   }
 
-  async fillCharSet(value: string){
+  async fillCharSet(value: string) {
     await expect(this.CharSet).toBeVisible({ timeout: 60000 });
     await this.CharSet.selectOption(value);
   }
 
-  async fillPriority(value: string){
+  async fillPriority(value: string) {
     await expect(this.Priority).toBeVisible({ timeout: 60000 });
     await this.Priority.selectOption(value);
   }
 
-  async fillFromName(value: string){
+  async fillFromName(value: string) {
     await expect(this.FromName).toBeVisible({ timeout: 60000 });
     await this.FromName.fill(value);
   }
 
-  async fillFromEmail(value: string){
+  async fillFromEmail(value: string) {
     await expect(this.FromEMail).toBeVisible({ timeout: 60000 });
     await this.FromEMail.fill(value);
   }
@@ -112,5 +112,5 @@ export default class EmailSettings {
   async clickSaveButton() {
     await expect(this.SaveButton).toBeVisible({ timeout: 60000 });
     await this.SaveButton.click();
-  } 
+  }
 }

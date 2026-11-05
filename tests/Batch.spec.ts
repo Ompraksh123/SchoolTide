@@ -12,3 +12,7 @@ test("SMSSetting @Batch3", async ({ page }) => {
 test("EmailSetting @Batch4", async ({ page }) => {
   // scenario
 });
+
+test("Administrator @Batch5", async ({ page }) => {
+  // scenario
+});

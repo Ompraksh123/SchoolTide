@@ -42,11 +42,9 @@ test.describe("EmailSetting", { tag: "@Batch4" }, () => {
     await page.waitForTimeout(3000);
     await emailSetting.fillFromName("Roshan Kumar");
     await expect(emailSetting.FromName).toHaveValue("Roshan Kumar");
-    await emailSetting.fillFromEmail("roshankumar@gmail.com");    
-    await expect(emailSetting.FromEMail).toHaveValue("roshankumar@gmail.com");  
-    await emailSetting.clickSaveButton();     
+    await emailSetting.fillFromEmail("roshankumar@gmail.com");
+    await expect(emailSetting.FromEMail).toHaveValue("roshankumar@gmail.com");
+    await emailSetting.clickSaveButton();
     await page.waitForTimeout(3000);
-
-
   });
 });
