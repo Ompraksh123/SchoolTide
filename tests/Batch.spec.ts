@@ -8,3 +8,7 @@ test("Setting @Batch2", async ({ page }) => {
 test("SMSSetting @Batch3", async ({ page }) => {
   // scenario
 });
+
+test("EmailSetting @Batch4", async ({ page }) => {
+  // scenario
+});

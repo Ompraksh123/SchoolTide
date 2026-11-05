@@ -142,7 +142,7 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await page.waitForTimeout(3000);
   });
 
-   test("Verify user successfully clicks on Text Local in SMS Setting Tab", async ({
+  test("Verify user successfully clicks on Text Local in SMS Setting Tab", async ({
     page,
   }) => {
     const smsSetting = new SmsSetting(page);
@@ -151,7 +151,9 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await smsSetting.ClickOnTextLocal();
     await page.waitForTimeout(3000);
     await smsSetting.ClickOnUserNameTextLocal("testure@example.com");
-    await expect(smsSetting.UserNameTextLocal).toHaveValue("testure@example.com");
+    await expect(smsSetting.UserNameTextLocal).toHaveValue(
+      "testure@example.com",
+    );
     await smsSetting.ClickOnHashKeyTextLocal(
       "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b200",
     );
@@ -163,47 +165,46 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await expect(smsSetting.SenderIdTextLocal).toHaveValue("TESTIDRS");
     await page.waitForTimeout(3000);
     await smsSetting.SelectIsActiveTextLocal("No");
-    await expect(smsSetting.IsActiveTextLocal.locator("option:checked")).toHaveText(
-      "No",
-    );
+    await expect(
+      smsSetting.IsActiveTextLocal.locator("option:checked"),
+    ).toHaveText("No");
     await smsSetting.ClickOnUpdateButtonTextLocal();
     await page.waitForTimeout(3000);
-  });  
-  
-  test("Verify user successfully clicks on More dropdown", async ({
-    page,
-  }) => {
+  });
+
+  test("Verify user successfully clicks on More dropdown", async ({ page }) => {
     const smsSetting = new SmsSetting(page);
     await smsSetting.clickSettingDropdown();
     await smsSetting.clickSmsSettingTab();
-    await smsSetting.ClickOnMoreDropdownIndicator();    
-    await smsSetting.ClickOnBulkPk();    
+    await smsSetting.ClickOnMoreDropdownIndicator();
+    await smsSetting.ClickOnBulkPk();
     await smsSetting.ClickOnBulkPkUserName("testuserbulkpk");
-    await expect(smsSetting.BulkPkUserName).toHaveValue("testuserbulkpk");    
+    await expect(smsSetting.BulkPkUserName).toHaveValue("testuserbulkpk");
     await smsSetting.ClickOnBulkPkUserPassword("Test@123456");
-    await expect(smsSetting.BulkPkUserPassword).toHaveValue("Test@123456");    
+    await expect(smsSetting.BulkPkUserPassword).toHaveValue("Test@123456");
     await smsSetting.ClickSenderIdBulkPk("TESTIDRS");
     await expect(smsSetting.SenderIdBulkPk).toHaveValue("TESTIDRS");
     await page.waitForTimeout(3000);
     await smsSetting.SelectIsActiveBulkPk("No");
-    await expect(smsSetting.IsActiveBulkPk.locator("option:checked")).toHaveText(
-      "No",
-    );
+    await expect(
+      smsSetting.IsActiveBulkPk.locator("option:checked"),
+    ).toHaveText("No");
     await page.waitForTimeout(3000);
     await smsSetting.ClickOnUpdateButtonBulkPk();
     await page.waitForTimeout(3000);
-
   });
 
-   test("Verify user successfully clicks on More dropdown and selects SMS Cluster", async ({
+  test("Verify user successfully clicks on More dropdown and selects SMS Cluster", async ({
     page,
   }) => {
     const smsSetting = new SmsSetting(page);
     await smsSetting.clickSettingDropdown();
     await smsSetting.clickSmsSettingTab();
-    await smsSetting.ClickOnMoreDropdownIndicator();     
-    await smsSetting.ClickOnSMSCluster();    
-    await smsSetting.ClickOnAuthKeySMSCluster("123456AbCdEfGhIjKl7890mnOpQrStuv11");
+    await smsSetting.ClickOnMoreDropdownIndicator();
+    await smsSetting.ClickOnSMSCluster();
+    await smsSetting.ClickOnAuthKeySMSCluster(
+      "123456AbCdEfGhIjKl7890mnOpQrStuv11",
+    );
     await expect(smsSetting.AuthKeySMSCluster).toHaveValue(
       "123456AbCdEfGhIjKl7890mnOpQrStuv11",
     );
@@ -213,15 +214,14 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     await page.waitForTimeout(3000);
     await smsSetting.clickOnSenderIdSMSCluster("TESTIDRS");
     await expect(smsSetting.SenderIdSMSCluster).toHaveValue("TESTIDRS");
-    await page.waitForTimeout(3000);  
+    await page.waitForTimeout(3000);
     await smsSetting.SelectIsActiveSMSCluster("No");
-    await expect(smsSetting.IsActiveSMSCluster.locator("option:checked")).toHaveText(
-      "No",
-    );
+    await expect(
+      smsSetting.IsActiveSMSCluster.locator("option:checked"),
+    ).toHaveText("No");
     await page.waitForTimeout(3000);
     await smsSetting.ClickOnUpdateButtonSMSCluster();
     await page.waitForTimeout(3000);
-
   });
 
   test("Verify user successfully clicks on More dropdown and selects Alpha.net Cluster", async ({
@@ -243,19 +243,18 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     );
     await page.waitForTimeout(3000);
     await smsSetting.SelectSMSTypeAlphaNet("Unicode");
-    await expect(smsSetting.SMSTypeAlphaNet.locator("option:checked")).toHaveText(
-      "Unicode",
-    );
+    await expect(
+      smsSetting.SMSTypeAlphaNet.locator("option:checked"),
+    ).toHaveText("Unicode");
     await page.waitForTimeout(3000);
     await smsSetting.SelectIsActiveAlphaNet("No");
-    await expect(smsSetting.IsActiveAlphaNet.locator("option:checked")).toHaveText(
-      "No",
-    );
+    await expect(
+      smsSetting.IsActiveAlphaNet.locator("option:checked"),
+    ).toHaveText("No");
     await page.waitForTimeout(3000);
     await smsSetting.ClickOnUpdateButtonAlphaNet();
-    await page.waitForTimeout(3000);  
-
-  }); 
+    await page.waitForTimeout(3000);
+  });
 
   test("Verify user successfully clicks on More dropdown and selects BDBulk Cluster", async ({
     page,
@@ -278,12 +277,41 @@ test.describe("SMSSetting", { tag: "@Batch3" }, () => {
     );
     await page.waitForTimeout(3000);
     await smsSetting.SelectIsActiveBDBulk("No");
-    await expect(smsSetting.IsActiveBDBulk.locator("option:checked")).toHaveText(
-      "No",
-    );
+    await expect(
+      smsSetting.IsActiveBDBulk.locator("option:checked"),
+    ).toHaveText("No");
     await page.waitForTimeout(3000);
     await smsSetting.ClickOnUpdateButtonBDBulk();
     await page.waitForTimeout(3000);
+  });
 
+  test("Verify user successfully clicks on More dropdown and selects Mim SMS Cluster", async ({
+    page,
+  }) => {
+    const smsSetting = new SmsSetting(page);
+    await smsSetting.clickSettingDropdown();
+    await smsSetting.clickSmsSettingTab();
+    await smsSetting.ClickOnMoreDropdownIndicator();
+    await smsSetting.ClickOnMimSMS();
+    await smsSetting.ClickOnAPIKeyMimSMS("123456AbCdEfGhIjKl7890mnOpQrStuv11");
+    await expect(smsSetting.APIKeyMimSMS).toHaveValue(
+      "123456AbCdEfGhIjKl7890mnOpQrStuv11",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnSenderIdMimSMS("TESTIDRS");
+    await expect(smsSetting.SenderIdMimSMS).toHaveValue("TESTIDRS");
+    await page.waitForTimeout(3000);
+    await smsSetting.SelectSMSTypeMimSMS("Unicode");
+    await expect(smsSetting.SMSTypeMimSMS.locator("option:checked")).toHaveText(
+      "Unicode",
+    );
+    await page.waitForTimeout(3000);
+    await smsSetting.SelectIsActiveMimSMS("No");
+    await expect(
+      smsSetting.IsActiveMimSMS.locator("option:checked"),
+    ).toHaveText("No");
+    await page.waitForTimeout(3000);
+    await smsSetting.ClickOnUpdateButtonMimSMS();
+    await page.waitForTimeout(3000);
   });
 });

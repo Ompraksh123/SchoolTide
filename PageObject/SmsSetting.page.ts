@@ -50,7 +50,7 @@ export default class SMsSettingPage {
   readonly IsActiveTextLocal: Locator;
   readonly UpdateButtonTextLocal: Locator;
 
-  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Bulk Pk 
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Bulk Pk
   readonly MoreDropdownIndicator: Locator;
   readonly BulkPk: Locator;
   readonly BulkPkUserName: Locator;
@@ -60,7 +60,7 @@ export default class SMsSettingPage {
   readonly UpdateButtonBulkPk: Locator;
 
   //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> SMS Cluster
-  readonly SMSCluster: Locator; 
+  readonly SMSCluster: Locator;
   readonly AuthKeySMSCluster: Locator;
   readonly RouterIdSMSCluster: Locator;
   readonly SenderIdSMSCluster: Locator;
@@ -72,17 +72,24 @@ export default class SMsSettingPage {
   readonly UserNameAlphaNet: Locator;
   readonly HashKeyAlphaNet: Locator;
   readonly SMSTypeAlphaNet: Locator;
-  readonly IsActiveAlphaNet: Locator
+  readonly IsActiveAlphaNet: Locator;
   readonly UpdateButtonAlphaNet: Locator;
 
   //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> BD Bulk
-  readonly BDBulk: Locator
-  readonly HashKeyBDBulk: Locator
+  readonly BDBulk: Locator;
+  readonly HashKeyBDBulk: Locator;
   readonly SMSTypeBDBulk: Locator;
   readonly IsActiveBDBulk: Locator;
   readonly UpdateButtonBDBulk: Locator;
 
-   
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Mim SMS
+  readonly MimSMS: Locator;
+  readonly APIKeyMimSMS: Locator;
+  readonly SenderIdMimSMS: Locator;
+  readonly SMSTypeMimSMS: Locator;
+  readonly IsActiveMimSMS: Locator;
+  readonly UpdateButtonMimSMS: Locator;
+
   constructor(page: Page) {
     this.page = page;
 
@@ -150,14 +157,18 @@ export default class SMsSettingPage {
 
     this.TextLocal = page.locator("//a[@href='#tab_textlocal_setting']");
 
-    this.UserNameTextLocal = page.locator("//input[@name='textlocal_username']");
-    
+    this.UserNameTextLocal = page.locator(
+      "//input[@name='textlocal_username']",
+    );
+
     this.HashKeyTextLocal = page.locator("//input[@name='textlocal_hash_key']");
 
-    this.SenderIdTextLocal = page.locator("//input[@name='textlocal_sender_id']");
+    this.SenderIdTextLocal = page.locator(
+      "//input[@name='textlocal_sender_id']",
+    );
 
     this.IsActiveTextLocal = page.locator("//select[@name='textlocal_status']");
-    
+
     this.UpdateButtonTextLocal = page.locator("(//button[@id='send'])[6]");
 
     this.MoreDropdownIndicator = page.locator("//a[normalize-space()='More']");
@@ -167,7 +178,7 @@ export default class SMsSettingPage {
     this.BulkPkUserName = page.locator("//input[@name='bulk_pk_username']");
 
     this.BulkPkUserPassword = page.locator("//input[@name='bulk_pk_password']");
-    
+
     this.SenderIdBulkPk = page.locator("//input[@name='bulk_pk_sender_id']");
 
     this.IsActiveBulkPk = page.locator("//select[@name='bulk_pk_status']");
@@ -180,11 +191,15 @@ export default class SMsSettingPage {
 
     this.RouterIdSMSCluster = page.locator("//input[@name='cluster_router']");
 
-    this.SenderIdSMSCluster = page.locator("//input[@name='cluster_sender_id']");
+    this.SenderIdSMSCluster = page.locator(
+      "//input[@name='cluster_sender_id']",
+    );
 
     this.IsActiveSMSCluster = page.locator("//select[@name='cluster_status']");
 
-    this.UpdateButtonSMSCluster = page.locator("(//button[@type='submit'])[11]");
+    this.UpdateButtonSMSCluster = page.locator(
+      "(//button[@type='submit'])[11]",
+    );
 
     this.AlphaNet = page.locator("//a[@href='#tab_alpha_setting']");
 
@@ -206,8 +221,19 @@ export default class SMsSettingPage {
 
     this.IsActiveBDBulk = page.locator("//select[@name='bdbulk_status']");
 
-    this.UpdateButtonBDBulk = page.locator("(//button[@type='submit'])[13]"); 
-    
+    this.UpdateButtonBDBulk = page.locator("(//button[@type='submit'])[13]");
+
+    this.MimSMS = page.locator("//a[@href='#tab_mimsms_setting']");
+
+    this.APIKeyMimSMS = page.locator("//input[@name='mim_api_key']");
+
+    this.SenderIdMimSMS = page.locator("//input[@name='mim_sender_id']");
+
+    this.SMSTypeMimSMS = page.locator("//select[@name='mim_type']");
+
+    this.IsActiveMimSMS = page.locator("//select[@name='mim_status']");
+
+    this.UpdateButtonMimSMS = page.locator("(//button[@type='submit'])[14]");
   }
 
   async clickSettingDropdown() {
@@ -423,7 +449,7 @@ export default class SMsSettingPage {
     await this.UpdateButtonTextLocal.click();
   }
 
-  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Bulk Pk 
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Bulk Pk
 
   async ClickOnMoreDropdownIndicator() {
     await expect(this.MoreDropdownIndicator).toBeVisible({ timeout: 6000 });
@@ -435,21 +461,21 @@ export default class SMsSettingPage {
     await this.BulkPk.click();
   }
   async ClickOnBulkPkUserName(value: string) {
-    await expect(this.BulkPkUserName).toBeVisible({timeout:6000});
-    await expect(this.BulkPkUserName).toBeVisible({timeout:6000});
+    await expect(this.BulkPkUserName).toBeVisible({ timeout: 6000 });
+    await expect(this.BulkPkUserName).toBeVisible({ timeout: 6000 });
     await this.BulkPkUserName.fill(value);
-  }  
+  }
 
   async ClickOnBulkPkUserPassword(value: string) {
-    await expect(this.BulkPkUserPassword).toBeVisible({timeout:6000});
+    await expect(this.BulkPkUserPassword).toBeVisible({ timeout: 6000 });
     await this.BulkPkUserPassword.fill(value);
   }
 
   async ClickSenderIdBulkPk(value: string) {
-    await expect(this.SenderIdBulkPk).toBeVisible({timeout:6000});
-   await this.SenderIdBulkPk.fill(value);
+    await expect(this.SenderIdBulkPk).toBeVisible({ timeout: 6000 });
+    await this.SenderIdBulkPk.fill(value);
   }
-  
+
   async SelectIsActiveBulkPk(label: string) {
     await this.IsActiveBulkPk.selectOption({ label });
   }
@@ -518,6 +544,8 @@ export default class SMsSettingPage {
     await this.UpdateButtonAlphaNet.click();
   }
 
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> BD Bulk
+
   async ClickOnBDBulk() {
     await expect(this.BDBulk).toBeVisible({ timeout: 6000 });
     await this.BDBulk.click();
@@ -539,6 +567,34 @@ export default class SMsSettingPage {
   async ClickOnUpdateButtonBDBulk() {
     await expect(this.UpdateButtonBDBulk).toBeVisible({ timeout: 6000 });
     await this.UpdateButtonBDBulk.click();
-  } 
+  }
 
+  //Setting --> SMS Setting ---> More ---> Dropdown Indicator --> Mim SMS
+  async ClickOnMimSMS() {
+    await expect(this.MimSMS).toBeVisible({ timeout: 6000 });
+    await this.MimSMS.click();
+  }
+
+  async ClickOnAPIKeyMimSMS(value: string) {
+    await expect(this.APIKeyMimSMS).toBeVisible({ timeout: 6000 });
+    await this.APIKeyMimSMS.fill(value);
+  }
+
+  async ClickOnSenderIdMimSMS(value: string) {
+    await expect(this.SenderIdMimSMS).toBeVisible({ timeout: 6000 });
+    await this.SenderIdMimSMS.fill(value);
+  }
+
+  async SelectSMSTypeMimSMS(label: string) {
+    await this.SMSTypeMimSMS.selectOption({ label });
+  }
+
+  async SelectIsActiveMimSMS(label: string) {
+    await this.IsActiveMimSMS.selectOption({ label });
+  }
+
+  async ClickOnUpdateButtonMimSMS() {
+    await expect(this.UpdateButtonMimSMS).toBeVisible({ timeout: 6000 });
+    await this.UpdateButtonMimSMS.click();
+  }
 }
